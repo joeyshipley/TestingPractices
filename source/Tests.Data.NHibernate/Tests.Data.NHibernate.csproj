@@ -88,9 +88,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Example\InMemoryDb\ExampleInteractorClassicalTests.cs" />
-    <Compile Include="Example\ExampleInteractorMockistTests.cs" />
-    <Compile Include="Example\TestDb\ExampleInteractorClassicalTests.cs" />
+    <Compile Include="Application\DomainAdapter\RequestMapperClassicalTests.cs" />
+    <Compile Include="Application\DomainAdapter\RequestMapperMockistTests.cs" />
+    <Compile Include="Application\Example\ExampleInteractorClassicalInMemoryDbTests.cs" />
+    <Compile Include="Application\Example\ExampleInteractorMockistTests.cs" />
+    <Compile Include="Application\Example\ExampleInteractorClassicalTestDbTests.cs" />
     <Compile Include="Infrastructure\ClassicalTest.cs" />
     <Compile Include="Infrastructure\InMemorySessionProvider.cs" />
     <Compile Include="Infrastructure\MockistTest.cs" />
@@ -105,6 +107,10 @@
     <ProjectReference Include="..\Data.NHibernate\Data.NHibernate.csproj">
       <Project>{D092657C-83B5-4F46-ADDD-72D6ADF7C4E1}</Project>
       <Name>Data.NHibernate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{D4CED876-4995-4CC2-940A-6730FBC3DC7E}</Project>
+      <Name>Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\Infrastructure.IoC\Infrastructure.IoC.csproj">
       <Project>{b4de96ff-673b-4a57-8498-efbf42d11b07}</Project>
@@ -127,6 +133,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

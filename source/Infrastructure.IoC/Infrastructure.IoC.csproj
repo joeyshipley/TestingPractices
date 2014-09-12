@@ -77,6 +77,10 @@
       <Project>{d092657c-83b5-4f46-addd-72d6adf7c4e1}</Project>
       <Name>Data.NHibernate</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{D4CED876-4995-4CC2-940A-6730FBC3DC7E}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

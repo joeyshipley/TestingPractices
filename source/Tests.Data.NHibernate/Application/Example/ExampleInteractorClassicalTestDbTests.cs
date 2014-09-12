@@ -4,12 +4,12 @@ using Application;
 using Application.Example;
 using Application.Example.Communication;
 using Application.Example.Contract;
-using Application.Example.Entity;
+using Domain;
 using FluentAssertions;
-using Tests.Data.EntityFramework.Infrastructure;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Tests.Data.NHibernate.Infrastructure;
 
-namespace Tests.Data.EntityFramework.Example.ExampleInteractorTests.Classical.TestDb
+namespace Tests.Data.NHibernate.Application.Example.ExampleInteractorTests.Classical.TestDb
 {
     [TestClass]
     public class When_Speak_WhenInvalid_SourceUnknown
@@ -17,6 +17,11 @@ namespace Tests.Data.EntityFramework.Example.ExampleInteractorTests.Classical.Te
     {
         private IExampleInteractor _exampleInteractor;
         private SpeakResult _result;
+
+        public override void CleanUp()
+        {
+            TestDatabaseHelper.CleanUpDb(Container);
+        }
 
         public override void Arrange()
         {
@@ -67,7 +72,12 @@ namespace Tests.Data.EntityFramework.Example.ExampleInteractorTests.Classical.Te
     {
         private IExampleInteractor _exampleInteractor;
         private SpeakResult _result;
-
+        
+        public override void CleanUp()
+        {
+            TestDatabaseHelper.CleanUpDb(Container);
+        }
+        
         public override void Arrange()
         {
             _exampleInteractor = SystemUnderTest;
@@ -117,6 +127,10 @@ namespace Tests.Data.EntityFramework.Example.ExampleInteractorTests.Classical.Te
     {
         private IExampleInteractor _exampleInteractor;
         private SpeakResult _result;
+        public override void CleanUp()
+        {
+            TestDatabaseHelper.CleanUpDb(Container);
+        }
 
         public override void Arrange()
         {
@@ -168,17 +182,14 @@ namespace Tests.Data.EntityFramework.Example.ExampleInteractorTests.Classical.Te
     {
         private IExampleInteractor _exampleInteractor;
         private SpeakResult _result;
+        
+        public override void CleanUp()
+        {
+            TestDatabaseHelper.CleanUpDb(Container);
+        }
 
         public override void Arrange()
         {
-            var validConversation = new Conversation
-            {
-                Source = Rules.Being.Lion,
-                Message = "Lorem ipsum dolor sit amet."
-            };
-            var addedConversation = validConversation;
-            addedConversation.Id = Guid.NewGuid();
-
             _exampleInteractor = SystemUnderTest;
         }
 

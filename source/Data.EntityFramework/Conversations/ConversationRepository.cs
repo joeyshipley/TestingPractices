@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Application.Example.Contract;
-using Application.Example.Entity;
 using Data.EntityFramework.Infrastructure;
+using Domain.Example.Contract;
+using Domain.Example.Entity;
 
 namespace Data.EntityFramework.Conversations
 {

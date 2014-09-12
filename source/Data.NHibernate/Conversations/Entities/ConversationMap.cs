@@ -1,4 +1,4 @@
-﻿using Application.Example.Entity;
+﻿using Domain.Example.Entity;
 using FluentNHibernate.Mapping;
 
 namespace Data.NHibernate.Conversations.Entities

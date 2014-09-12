@@ -6,12 +6,13 @@ using Application.Example;
 using Application.Example.Communication;
 using Application.Example.Contract;
 using Data.NHibernate.Infrastructure;
+using Domain;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using StructureMap;
 using Tests.Data.NHibernate.Infrastructure;
 
-namespace Tests.Data.NHibernate.Example.ExampleInteractorTests.Classical.InMemoryDb
+namespace Tests.Data.NHibernate.Application.Example.ExampleInteractorTests.Classical.InMemoryDb
 {
     [TestClass]
     public class When_Speak_WhenInvalid_SourceUnknown

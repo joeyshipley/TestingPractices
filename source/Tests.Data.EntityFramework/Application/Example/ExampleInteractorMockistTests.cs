@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Linq;
-using Application;
 using Application.Example;
 using Application.Example.Communication;
 using Application.Example.Contract;
-using Application.Example.Entity;
+using Domain;
+using Domain.Example.Communication;
+using Domain.Example.Contract;
+using Domain.Example.Entity;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NSubstitute;
-using Tests.Data.NHibernate.Infrastructure;
+using Moq;
+using Tests.Data.EntityFramework.Infrastructure;
 
-namespace Tests.Data.NHibernate.Example.ExampleInteractorTests.Mockist
+namespace Tests.Data.EntityFramework.Application.Example.ExampleInteractorTests.Mockist
 {
     [TestClass]
     public class When_Speak_WhenInvalid_SourceUnknown
@@ -22,8 +24,8 @@ namespace Tests.Data.NHibernate.Example.ExampleInteractorTests.Mockist
         public override void Arrange()
         {
             _exampleInteractor = SystemUnderTest;
-            Mocker.Get<IConversationFactory>()
-                .Create(Arg.Any<SpeakRequest>())
+            Mocker.GetMock<IConversationFactory>()
+                .Setup(m => m.Create(It.IsAny<CreateSpeakRequest>()))
                 .Returns(new Conversation
                 {
                     Message = "Hello Test."
@@ -42,9 +44,8 @@ namespace Tests.Data.NHibernate.Example.ExampleInteractorTests.Mockist
         [TestMethod]
         public void It_gets_an_entity_from_the_factory()
         {
-            Mocker.Get<IConversationFactory>()
-                .Received()
-                .Create(Arg.Any<SpeakRequest>());
+            Mocker.GetMock<IConversationFactory>()
+                .Verify(m => m.Create(It.IsAny<CreateSpeakRequest>()), Times.Once());
         }
         
         [TestMethod]
@@ -71,9 +72,8 @@ namespace Tests.Data.NHibernate.Example.ExampleInteractorTests.Mockist
         [TestMethod]
         public void It_does_not_insert_the_new_conversation()
         {
-            Mocker.Get<IConversationRepository>()
-                .DidNotReceive()
-                .Insert(Arg.Any<Conversation>());
+            Mocker.GetMock<IConversationRepository>()
+                .Verify(m => m.Insert(It.IsAny<Conversation>()), Times.Never);
         }
 
         [TestMethod]
@@ -94,8 +94,8 @@ namespace Tests.Data.NHibernate.Example.ExampleInteractorTests.Mockist
         public override void Arrange()
         {
             _exampleInteractor = SystemUnderTest;
-            Mocker.Get<IConversationFactory>()
-                .Create(Arg.Any<SpeakRequest>())
+            Mocker.GetMock<IConversationFactory>()
+                .Setup(m => m.Create(It.IsAny<CreateSpeakRequest>()))
                 .Returns(new Conversation
                 {
                     Source = Rules.Being.Lion
@@ -114,9 +114,8 @@ namespace Tests.Data.NHibernate.Example.ExampleInteractorTests.Mockist
         [TestMethod]
         public void It_gets_an_entity_from_the_factory()
         {
-            Mocker.Get<IConversationFactory>()
-                .Received()
-                .Create(Arg.Any<SpeakRequest>());
+            Mocker.GetMock<IConversationFactory>()
+                .Verify(m => m.Create(It.IsAny<CreateSpeakRequest>()), Times.Once);
         }
         
         [TestMethod]
@@ -143,9 +142,8 @@ namespace Tests.Data.NHibernate.Example.ExampleInteractorTests.Mockist
         [TestMethod]
         public void It_does_not_insert_the_new_conversation()
         {
-            Mocker.Get<IConversationRepository>()
-                .DidNotReceive()
-                .Insert(Arg.Any<Conversation>());
+            Mocker.GetMock<IConversationRepository>()
+                .Verify(m => m.Insert(It.IsAny<Conversation>()), Times.Never);
         }
 
         [TestMethod]
@@ -166,8 +164,8 @@ namespace Tests.Data.NHibernate.Example.ExampleInteractorTests.Mockist
         public override void Arrange()
         {
             _exampleInteractor = SystemUnderTest;
-            Mocker.Get<IConversationFactory>()
-                .Create(Arg.Any<SpeakRequest>())
+            Mocker.GetMock<IConversationFactory>()
+                .Setup(m => m.Create(It.IsAny<CreateSpeakRequest>()))
                 .Returns(new Conversation
                 {
                     Source = Rules.Being.Lion,
@@ -188,9 +186,8 @@ namespace Tests.Data.NHibernate.Example.ExampleInteractorTests.Mockist
         [TestMethod]
         public void It_gets_an_entity_from_the_factory()
         {
-            Mocker.Get<IConversationFactory>()
-                .Received()
-                .Create(Arg.Any<SpeakRequest>());
+            Mocker.GetMock<IConversationFactory>()
+                .Verify(m => m.Create(It.IsAny<CreateSpeakRequest>()), Times.Once);
         }
         
         [TestMethod]
@@ -217,9 +214,8 @@ namespace Tests.Data.NHibernate.Example.ExampleInteractorTests.Mockist
         [TestMethod]
         public void It_does_not_insert_the_new_conversation()
         {
-            Mocker.Get<IConversationRepository>()
-                .DidNotReceive()
-                .Insert(Arg.Any<Conversation>());
+            Mocker.GetMock<IConversationRepository>()
+                .Verify(m => m.Insert(It.IsAny<Conversation>()), Times.Never);
         }
 
         [TestMethod]
@@ -240,15 +236,15 @@ namespace Tests.Data.NHibernate.Example.ExampleInteractorTests.Mockist
         public override void Arrange()
         {
             _exampleInteractor = SystemUnderTest;
-            Mocker.Get<IConversationFactory>()
-                .Create(Arg.Any<SpeakRequest>())
+            Mocker.GetMock<IConversationFactory>()
+                .Setup(m => m.Create(It.IsAny<CreateSpeakRequest>()))
                 .Returns(new Conversation
                 {
                     Source = Rules.Being.Lion,
                     Message = "Lorem ipsum dolor sit amet."
                 });
-            Mocker.Get<IConversationRepository>()
-                .Insert(Arg.Any<Conversation>())
+            Mocker.GetMock<IConversationRepository>()
+                .Setup(m => m.Insert(It.IsAny<Conversation>()))
                 .Returns(new UnknownConversation());
         }
 
@@ -265,9 +261,8 @@ namespace Tests.Data.NHibernate.Example.ExampleInteractorTests.Mockist
         [TestMethod]
         public void It_gets_an_entity_from_the_factory()
         {
-            Mocker.Get<IConversationFactory>()
-                .Received()
-                .Create(Arg.Any<SpeakRequest>());
+            Mocker.GetMock<IConversationFactory>()
+                .Verify(m => m.Create(It.IsAny<CreateSpeakRequest>()), Times.Once);
         }
         
         [TestMethod]
@@ -280,9 +275,8 @@ namespace Tests.Data.NHibernate.Example.ExampleInteractorTests.Mockist
         [TestMethod]
         public void It_tries_to_insert_the_new_conversation()
         {
-            Mocker.Get<IConversationRepository>()
-                .Received()
-                .Insert(Arg.Any<Conversation>());
+            Mocker.GetMock<IConversationRepository>()
+                .Verify(m => m.Insert(It.IsAny<Conversation>()), Times.Once);
         }
 
         [TestMethod]
@@ -318,11 +312,11 @@ namespace Tests.Data.NHibernate.Example.ExampleInteractorTests.Mockist
             addedConversation.Id = Guid.NewGuid();
 
             _exampleInteractor = SystemUnderTest;
-            Mocker.Get<IConversationFactory>()
-                .Create(Arg.Any<SpeakRequest>())
+            Mocker.GetMock<IConversationFactory>()
+                .Setup(m => m.Create(It.IsAny<CreateSpeakRequest>()))
                 .Returns(validConversation);
-            Mocker.Get<IConversationRepository>()
-                .Insert(Arg.Any<Conversation>())
+            Mocker.GetMock<IConversationRepository>()
+                .Setup(m => m.Insert(It.IsAny<Conversation>()))
                 .Returns(validConversation);
         }
 
@@ -339,17 +333,15 @@ namespace Tests.Data.NHibernate.Example.ExampleInteractorTests.Mockist
         [TestMethod]
         public void It_gets_an_entity_from_the_factory()
         {
-            Mocker.Get<IConversationFactory>()
-                .Received()
-                .Create(Arg.Any<SpeakRequest>());
+            Mocker.GetMock<IConversationFactory>()
+                .Verify(m => m.Create(It.IsAny<CreateSpeakRequest>()), Times.Once);
         }
         
         [TestMethod]
         public void It_tries_to_insert_the_new_conversation()
         {
-            Mocker.Get<IConversationRepository>()
-                .Received()
-                .Insert(Arg.Any<Conversation>());
+            Mocker.GetMock<IConversationRepository>()
+                .Verify(m => m.Insert(It.IsAny<Conversation>()), Times.Once);
         }
         
         [TestMethod]

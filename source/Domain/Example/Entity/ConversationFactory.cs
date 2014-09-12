@@ -1,12 +1,12 @@
 ﻿using System;
-using Application.Example.Communication;
-using Application.Example.Contract;
+using Domain.Example.Communication;
+using Domain.Example.Contract;
 
-namespace Application.Example.Entity
+namespace Domain.Example.Entity
 {
     public class ConversationFactory : IConversationFactory
     {
-        public Conversation Create(SpeakRequest request)
+        public Conversation Create(CreateSpeakRequest request)
         {
             if(request == null)
                 return new UnknownConversation();

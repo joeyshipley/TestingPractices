@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Application.Example.Contract;
-using Application.Example.Entity;
 using Data.NHibernate.Infrastructure;
+using Domain.Example.Contract;
+using Domain.Example.Entity;
 using NHibernate.Linq;
 
 namespace Data.NHibernate.Conversations

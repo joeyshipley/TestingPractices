@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Application.Example.Contract;
+using Domain.Example.Contract;
 using StructureMap;
 
 namespace Infrastructure.IoC.Structuremap
@@ -10,7 +11,8 @@ namespace Infrastructure.IoC.Structuremap
         private static readonly List<string> _assembliesToScan = new List<string>
         {
             "Application",
-            "Data.NHibernate"
+            "Data.NHibernate",
+            "Domain"
         };
 
         private static readonly List<Action<ConfigurationExpression>> _customMappings = new List<Action<ConfigurationExpression>>

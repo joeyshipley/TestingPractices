@@ -1,5 +1,5 @@
 ﻿using System.Data.Entity;
-using Application.Example.Entity;
+using Domain.Example.Entity;
 
 namespace Data.EntityFramework.Infrastructure
 {

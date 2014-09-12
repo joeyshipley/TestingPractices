@@ -1,8 +1,6 @@
-﻿using Domain;
-
-namespace Application.Example.Communication
+﻿namespace Domain.Example.Communication
 {
-    public class SpeakRequest
+    public class CreateSpeakRequest
     {
         public Rules.Being Source { get; set; }
         public string Message { get; set; }

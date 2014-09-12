@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Application.Infrastructure;
 
-namespace Application.Example.Entity
+namespace Domain.Example.Entity
 {
     public class Conversation : BaseEntity
     {

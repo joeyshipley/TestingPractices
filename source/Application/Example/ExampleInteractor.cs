@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Linq;
+using Application.DomainAdapter.Contract;
 using Application.Example.Communication;
 using Application.Example.Contract;
 using Application.Infrastructure;
+using Domain;
+using Domain.Example.Contract;
 
 namespace Application.Example
 {
@@ -10,17 +13,23 @@ namespace Application.Example
     {
         private readonly IConversationRepository _conversationRepository;
         private readonly IConversationFactory _conversationFactory;
+        private readonly IRequestMapper _requestMapper;
 
-        public ExampleInteractor(IConversationRepository conversationRepository, IConversationFactory conversationFactory)
+        public ExampleInteractor(
+            IConversationRepository conversationRepository, 
+            IConversationFactory conversationFactory,
+            IRequestMapper requestMapper)
         {
             _conversationRepository = conversationRepository;
             _conversationFactory = conversationFactory;
+            _requestMapper = requestMapper;
         }
 
         public SpeakResult Speak(SpeakRequest request)
         {
             var result = new SpeakResult();
-            var conversation = _conversationFactory.Create(request);
+            var createRequest = _requestMapper.MapFrom(request);
+            var conversation = _conversationFactory.Create(createRequest);
             
             if(conversation.Source == Rules.Being.Unknown)
             {

@@ -1,4 +1,5 @@
 ﻿using Application.Example.Contract;
+using Domain.Example.Contract;
 using Microsoft.Practices.Unity;
 
 namespace Infrastructure.IoC.Unity

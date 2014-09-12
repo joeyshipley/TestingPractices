@@ -73,8 +73,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Example\ExampleInteractorClassicalTests.cs" />
-    <Compile Include="Example\ExampleInteractorMockistTests.cs" />
+    <Compile Include="Application\DomainAdapter\RequestMapperClassicalTests.cs" />
+    <Compile Include="Application\DomainAdapter\RequestMapperMockistTests.cs" />
+    <Compile Include="Application\Example\ExampleInteractorClassicalTests.cs" />
+    <Compile Include="Application\Example\ExampleInteractorMockistTests.cs" />
     <Compile Include="Infrastructure\ClassicalTest.cs" />
     <Compile Include="Infrastructure\MockistTest.cs" />
     <Compile Include="Infrastructure\TestDatabaseContext.cs" />
@@ -96,6 +98,10 @@
       <Project>{531C65CA-921B-4283-8DDD-74CFBCAE4B9E}</Project>
       <Name>Data.EntityFramework</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{D4CED876-4995-4CC2-940A-6730FBC3DC7E}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Infrastructure.IoC\Infrastructure.IoC.csproj">
       <Project>{B4DE96FF-673B-4A57-8498-EFBF42D11B07}</Project>
       <Name>Infrastructure.IoC</Name>
@@ -104,6 +110,7 @@
   <ItemGroup>
     <Content Include="License.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

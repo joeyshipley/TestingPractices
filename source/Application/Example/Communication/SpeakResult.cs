@@ -1,5 +1,5 @@
-﻿using Application.Example.Entity;
-using Application.Infrastructure;
+﻿using Application.Infrastructure;
+using Domain.Example.Entity;
 
 namespace Application.Example.Communication
 {

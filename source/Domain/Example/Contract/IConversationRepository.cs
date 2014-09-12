@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Application.Example.Entity;
+using Domain.Example.Entity;
 
-namespace Application.Example.Contract
+namespace Domain.Example.Contract
 {
     public interface IConversationRepository
     {
