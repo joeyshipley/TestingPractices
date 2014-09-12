@@ -9,7 +9,6 @@ Lorem Ipsum dolar sit amet.
 ### TODO
 
 - Nuget Shared packages.config
-- Restructure to utilize domain
 - EF migration
 - Readme
 - Look into NHibernate auto mapping
