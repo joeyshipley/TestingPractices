@@ -1,14 +1,56 @@
 # Testing Practices
 
-Lorem Ipsum dolar sit amet.
+A sample .net c# solution that highlights two different concepts. 
 
-### Stack
+- First it shows examples of Mockist and Classical style testing. 
+- Second it has two implementations of the data layer. One for EntityFramework and one for NHibernate.
 
-- Lorem Ipsum
+### Setup
+
+- Project Created in VS2013 & SQL 2008 R2.
+- Create Databases: TestingFrameworkEFDBTestDB & TestingFrameworkNHDBTestDB.
+- Update the app.config of the two test projects to point to your databases (EF: ForTestsEntityFrameworkConnection, NH: DefaultConnection).
+
+### Test Coupling
+
+Amount of change needed in tests to refactor/change the codebase.
+
+- Classical tests: Low
+- Mockist tests: High
+
+### Test Performance
+
+Duration of the tests per resharper feedback. These only pertain to the ExampleInteractor tests. 
+
+- (~0.2 seconds) Mockist / NH
+- (~0.3 seconds) Mockist / EF
+- (~0.4 seconds) Classical / NH / TestDb
+- (~1.1 seconds) Classical / NH / InMemoryDb
+- (~7.5 seconds) Classical / EF / TestDb
+
+### Stack - EntityFramework
+
+- ORM: EntityFramework
+- IoC: Unity
+- Test Helper: Moq
+- Test Helper: AutoMoq
+- Test Helper: Fluent Assertions
+
+### Stack - NHibernate
+
+- ORM: NHibernate
+- ORM: NH Fluent Mappings
+- IoC: StructureMap
+- Test Helper: NSubstitute
+- Test Helper: NSubstituteAutoMocker
+- Test Helper: SQLite (InMemory NH)
+- Test Helper: Fluent Assertions
+
+### NOTES
+
+- EF/NH handles Enums differently in the DB.
+- EF/NH handles the BaseEntity differently in the DB.
 
 ### TODO
 
-- Nuget Shared packages.config
-- EF migration
-- Readme
 - Look into NHibernate auto mapping
