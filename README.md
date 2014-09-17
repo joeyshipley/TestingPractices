@@ -18,6 +18,11 @@ Amount of change needed in tests to refactor/change the codebase.
 - Classical tests: Low
 - Mockist tests: High
 
+Example of coupling highlighted from refactoring:
+
+- [Classical](https://github.com/joeyshipley/TestingPractices/commit/afbc789015f13312b20c1ad7d58582da4963d066#diff-31)
+- [Mockist](https://github.com/joeyshipley/TestingPractices/commit/afbc789015f13312b20c1ad7d58582da4963d066#diff-32)
+
 ### Test Performance
 
 Duration of the tests per resharper feedback. These only pertain to the ExampleInteractor tests. 
